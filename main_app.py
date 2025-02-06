@@ -5,6 +5,7 @@ import plotly.express as px
 pd.options.mode.chained_assignment = None
 import warnings
 warnings.filterwarnings('ignore')
+locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')
 
 user_name_0_color = '#87c6d7'
 user_name_1_color = '#FFB6C1'
