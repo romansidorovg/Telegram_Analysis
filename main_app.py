@@ -9,6 +9,11 @@ warnings.filterwarnings('ignore')
 user_name_0_color = '#87c6d7'
 user_name_1_color = '#FFB6C1'
 
+# Маппинг для русских дней недели
+days_map = {
+    0: 'Понедельник', 1: 'Вторник', 2: 'Среда', 3: 'Четверг', 4: 'Пятница', 5: 'Суббота', 6: 'Воскресенье'
+}
+
 def get_granularity(granularity_filter):
     if granularity_filter == "День":
         return 'day_date'
@@ -60,16 +65,7 @@ if uploaded_file:
     df['week_date'] = df['date'].dt.to_period('W').dt.to_timestamp()
     df['month_date'] = df['date'].dt.to_period('M').dt.to_timestamp()
     df['year_date'] = df['date'].dt.to_period('Y').dt.to_timestamp()
-
-    # Маппинг для русских дней недели
-    days_map = {
-        0: 'Понедельник', 1: 'Вторник', 2: 'Среда', 3: 'Четверг', 
-        4: 'Пятница', 5: 'Суббота', 6: 'Воскресенье'
-    }
-    
     df['day_of_week'] = df['date'].dt.weekday.map(days_map)
-    
-    #df['day_of_week'] = df['date'].dt.day_name(locale='ru_RU')
     df['day_of_month'] = df['date'].dt.day
     df['message_length'] = df['text'].apply(len)
 
