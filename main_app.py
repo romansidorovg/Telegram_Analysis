@@ -26,7 +26,7 @@ def get_granularity(granularity_filter):
     return 'month_date'
 
 # Интерфейс загрузки файла
-st.title("Telegram Analyze")
+st.title("Telegram Analysis")
 uploaded_file = st.file_uploader("Загрузите вашу переписку в формате .json", type=["json"])
 
 # Инструкция для пользователя
