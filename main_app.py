@@ -60,7 +60,16 @@ if uploaded_file:
     df['week_date'] = df['date'].dt.to_period('W').dt.to_timestamp()
     df['month_date'] = df['date'].dt.to_period('M').dt.to_timestamp()
     df['year_date'] = df['date'].dt.to_period('Y').dt.to_timestamp()
-    df['day_of_week'] = df['date'].dt.day_name(locale='ru_RU')
+
+    # Маппинг для русских дней недели
+    days_map = {
+        0: 'Понедельник', 1: 'Вторник', 2: 'Среда', 3: 'Четверг', 
+        4: 'Пятница', 5: 'Суббота', 6: 'Воскресенье'
+    }
+    
+    df['day_of_week'] = df['date'].dt.weekday.map(days_map)
+    
+    #df['day_of_week'] = df['date'].dt.day_name(locale='ru_RU')
     df['day_of_month'] = df['date'].dt.day
     df['message_length'] = df['text'].apply(len)
 
